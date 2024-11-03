@@ -4,22 +4,26 @@ CIS256
 US State Capitals Quiz
 """
 
+
 import random
 
-#Functions
-def main():
-    setupGame()
-    playGame()
 
-def setupGame():
+# Functions
+def main():
+    setup_game()
+    play_game()
+
+
+def setup_game():
     global states, capitals, correct, incorrect, used #declare globals to be used in other parts of program
     correct = 0 #keep track of correct responses
     incorrect = 0 #keep track of incorrect responses
     used = [False] * 50 #keep track of whether we already asked that question
-    states = populateStatesList() #fill list using function
-    capitals = populateDict() #fill dict using function
+    states = populate_states_list() #fill list using function
+    capitals = populate_dict() #fill dict using function
 
-def playGame():
+
+def play_game():
     global correct, incorrect, used
     guess = ""
     while guess.lower() != "quit": #gameplay loop ends by typing quit
@@ -28,7 +32,7 @@ def playGame():
             index = random.randint(0, len(states) - 1) #pick an index for a question we havent asked
         used[index] = True #update list to true before asking question
         allTrue = True
-        for i in range(0, 50): 
+        for i in range(0, 50):
             if used[i] == False:
                 allTrue = False
         if allTrue: #if all questions have been asked, reset the game
@@ -46,10 +50,12 @@ def playGame():
             print("SORRY...the capital of " + state + " is " + capital + ".")
             incorrect += 1
         print("YOUR SCORE: You have gotten " + str(correct) + " of " + str(correct + incorrect) + " correct.")
-    
 
-#List of states
-def populateStatesList():
+
+
+
+# List of states
+def populate_states_list():
     return ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
             'Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa',
             'Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan',
@@ -59,8 +65,9 @@ def populateStatesList():
             'South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia',
             'Washington','West Virginia','Wisconsin','Wyoming']
 
-#dictionary of states:capitals 
-def populateDict():
+
+# dictionary of states:capitals
+def populate_dict():
     return {'Alabama':'Montgomery','Alaska':'Juneau','Arizona':'Phoenix','Arkansas':'Little Rock',
             'California':'Sacramento','Colorado':'Denver','Connecticut':'Hartford',
             'Delaware':'Dover','Florida':'Tallahassee','Georgia':'Atlanta','Hawaii':'Honolulu',
@@ -77,5 +84,6 @@ def populateDict():
             'Virginia':'Richmond','Washington':'Olympia','West Virginia':'Charleston',
             'Wisconsin':'Madison','Wyoming':'Cheyenne'}
 
-#Run game
+
+# Run game
 main()
